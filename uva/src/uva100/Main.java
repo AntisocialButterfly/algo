@@ -1,4 +1,5 @@
 package uva100;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -6,7 +7,7 @@ import java.io.InputStreamReader;
 public class Main {
   private static int len(long n) {
     int len = 1;
-    while (n != 1) {      
+    while (n != 1) {
       if (n % 2 == 0) {
         n /= 2;
       } else {

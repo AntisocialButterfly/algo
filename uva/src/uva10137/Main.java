@@ -1,4 +1,5 @@
 package uva10137;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -28,7 +29,7 @@ public class Main {
     double avg = sum / N;
     double toDecrease = 0;
     double toIncrease = 0;
-    
+
     for (double a : e) {
       double diff = Math.round(100.0 * (avg - a)) / 100.0;
       if (diff > 0) {
@@ -37,7 +38,7 @@ public class Main {
         toDecrease += -diff;
       }
     }
-        
+
     return Math.min(toIncrease, toDecrease);
   }
 
@@ -48,8 +49,7 @@ public class Main {
     while ((line = reader.readLine()) != null) {
       int N = Integer.parseInt(line.trim());
       if (N > 0) {
-        System.out.printf("$%.2f%n",
-            calculate(readExpenses(reader, N), N));
+        System.out.printf("$%.2f%n", calculate(readExpenses(reader, N), N));
       }
     }
   }

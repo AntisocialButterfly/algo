@@ -1,4 +1,5 @@
 package uva10267;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -10,11 +11,13 @@ public class Main {
   private static class Editor {
     private static class Point {
       int x, y;
+
       public Point(int x, int y) {
         this.x = x;
         this.y = y;
       }
     }
+
     private char[][] image;
 
     public boolean processCommand(String command) {
@@ -22,7 +25,7 @@ public class Main {
 
       char cmd = scanner.next().charAt(0);
       int x1, y1, x2, y2;
-      
+
       switch (cmd) {
       case 'I':
         init(scanner.nextInt(), scanner.nextInt());
@@ -48,12 +51,8 @@ public class Main {
         rect(x1, y1, x2, y1, scanner.next().charAt(0));
         break;
       case 'K':
-        rect(
-            scanner.nextInt() - 1, 
-            scanner.nextInt() - 1, 
-            scanner.nextInt() - 1, 
-            scanner.nextInt() - 1, 
-            scanner.next().charAt(0)); 
+        rect(scanner.nextInt() - 1, scanner.nextInt() - 1, scanner.nextInt() - 1,
+            scanner.nextInt() - 1, scanner.next().charAt(0));
         break;
       case 'F':
         x1 = scanner.nextInt() - 1;
@@ -66,15 +65,15 @@ public class Main {
       case 'X':
         return false;
       }
-      
+
       return true;
     }
-    
+
     private void init(int cols, int rows) {
       image = new char[rows][cols];
       rect(0, 0, cols - 1, rows - 1, 'O');
     }
-    
+
     private void rect(int x1, int y1, int x2, int y2, char c) {
       int tmp = x1;
       if (x1 > x2) {
@@ -87,22 +86,22 @@ public class Main {
         y1 = y2;
         y2 = tmp;
       }
-      
+
       for (int y = y1; y <= y2; y++) {
         for (int x = x1; x <= x2; x++) {
           image[y][x] = c;
         }
       }
     }
-    
+
     private void fill(int x, int y, char p, char c) {
       if (p == c) {
         return;
       }
-      
+
       Queue<Point> q = new LinkedList<Point>();
       q.add(new Point(x, y));
-      
+
       while (!q.isEmpty()) {
         Point t = q.remove();
         if (isInBounds(t.x, t.y) && image[t.y][t.x] == p) {
@@ -115,11 +114,11 @@ public class Main {
         }
       }
     }
-        
+
     private boolean isInBounds(int x, int y) {
       return x >= 0 && y >= 0 && x < image[0].length && y < image.length;
     }
-    
+
     private String save(String filename) {
       StringBuilder output = new StringBuilder();
       output.append(filename);
@@ -128,7 +127,7 @@ public class Main {
         output.append(image[y]);
         output.append("\n");
       }
-      
+
       return output.toString();
     }
   }

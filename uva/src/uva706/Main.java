@@ -1,26 +1,23 @@
 package uva706;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
 public class Main {
-  public static class LcdDisplay {    
-    private static final String[] pattern = { 
-      " -     -  -     -  -  -  -  - ",
-      "| |  |  |  || ||  |    || || |",
-      "       -  -  -  -  -     -  - ",
-      "| |  ||    |  |  || |  || |  |",
-      " -     -  -     -  -     -  - ",    
-    };
+  public static class LcdDisplay {
+    private static final String[] pattern = { " -     -  -     -  -  -  -  - ",
+        "| |  |  |  || ||  |    || || |", "       -  -  -  -  -     -  - ",
+        "| |  ||    |  |  || |  || |  |", " -     -  -     -  -     -  - ", };
 
     private final int S;
-    
+
     public LcdDisplay(int s) {
       S = s;
     }
-    
+
     private int getRow(int row) {
-      if (row == 0) { 
+      if (row == 0) {
         return 0;
       } else if (row <= S) {
         return 1;
@@ -32,24 +29,24 @@ public class Main {
         return 4;
       }
     }
-    
+
     private int getCol(int col) {
       if (col == 0) {
         return 0;
       } else if (col < S + 1) {
         return 1;
-      } else { 
+      } else {
         return 2;
       }
     }
-    
+
     private char getCharFor(int d, int row, int col) {
       return pattern[getRow(row)].charAt(d * 3 + getCol(col));
     }
-    
+
     public String print(String n) {
       StringBuilder sb = new StringBuilder();
-      
+
       for (int row = 0; row < 2 * S + 3; row++) {
         for (int c = 0; c < n.length(); c++) {
           for (int col = 0; col < S + 2; col++) {
@@ -61,11 +58,11 @@ public class Main {
         }
         sb.append("\n");
       }
-      
+
       return sb.toString();
     }
   }
-  
+
   public static void main(String[] args) throws IOException {
     BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 

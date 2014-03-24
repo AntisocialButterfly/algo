@@ -1,4 +1,5 @@
 package uva10189;
+
 import java.io.InputStreamReader;
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -13,8 +14,7 @@ public class Main {
     return field[row][col] == '*';
   }
 
-  static byte[][] loadField(BufferedReader reader, int n, int m)
-      throws IOException {
+  static byte[][] loadField(BufferedReader reader, int n, int m) throws IOException {
     char[][] field = new char[n][m];
     for (int i = 0; i < n; i++) {
       String line = reader.readLine().trim();
@@ -66,9 +66,8 @@ public class Main {
     String line;
     int n = 1;
 
-    BufferedReader reader = 
-        new BufferedReader(new InputStreamReader(System.in));
-    
+    BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+
     while ((line = reader.readLine()) != null) {
       String[] dimensions = line.trim().split("\\s+");
       int height = Integer.parseInt(dimensions[0]);
