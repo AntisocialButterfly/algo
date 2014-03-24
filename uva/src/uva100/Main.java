@@ -4,6 +4,9 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
+/**
+ * @see <a href="http://uva.onlinejudge.org/external/1/100.html">The 3n + 1 problem</a>
+ */
 public class Main {
   private static int len(long n) {
     int len = 1;

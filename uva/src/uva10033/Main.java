@@ -1,12 +1,14 @@
 package uva10033;
 
-import java.util.List;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.LinkedList;
-import java.util.Scanner;
+import java.util.List;
 
+/**
+ * @see <a href="http://uva.onlinejudge.org/external/100/10033.html">Interpreter</a>
+ */
 public class Main {
   private static class Computer {
     private static final int HALT = 1;

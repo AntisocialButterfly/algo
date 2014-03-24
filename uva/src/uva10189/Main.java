@@ -1,9 +1,12 @@
 package uva10189;
 
-import java.io.InputStreamReader;
 import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 
+/**
+ * @see <a href="http://uva.onlinejudge.org/external/101/10189.html">Minesweeper</a>
+ */
 public class Main {
   static boolean hasMine(char[][] field, int row, int col) {
     int height = field.length;

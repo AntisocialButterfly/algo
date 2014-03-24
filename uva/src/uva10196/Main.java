@@ -3,10 +3,12 @@ package uva10196;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * @see <a href="http://uva.onlinejudge.org/external/101/10196.html">Check The Check</a>
+ */
 public class Main {
   private static class InvalidBoardException extends Exception {
     private static final long serialVersionUID = 1L;

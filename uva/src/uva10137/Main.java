@@ -4,6 +4,9 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
+/**
+ * @see <a href="http://uva.onlinejudge.org/external/101/10137.html">The Trip</a>
+ */
 public class Main {
   static double[] readExpenses(BufferedReader reader, int n) throws IOException {
     double[] e = new double[n];

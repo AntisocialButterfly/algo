@@ -4,11 +4,17 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
+/**
+ * @see <a href="http://uva.onlinejudge.org/external/7/706.html">LC-Display</a>
+ */
 public class Main {
   public static class LcdDisplay {
-    private static final String[] pattern = { " -     -  -     -  -  -  -  - ",
-        "| |  |  |  || ||  |    || || |", "       -  -  -  -  -     -  - ",
-        "| |  ||    |  |  || |  || |  |", " -     -  -     -  -     -  - ", };
+    private static final String[] pattern = {
+        " -     -  -     -  -  -  -  - ",
+        "| |  |  |  || ||  |    || || |",
+        "       -  -  -  -  -     -  - ",
+        "| |  ||    |  |  || |  || |  |",
+        " -     -  -     -  -     -  - ", };
 
     private final int S;
 

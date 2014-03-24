@@ -7,6 +7,9 @@ import java.util.LinkedList;
 import java.util.Queue;
 import java.util.Scanner;
 
+/**
+ * @see <a href="http://uva.onlinejudge.org/external/102/10267.html">Graphical Editor</a>
+ */
 public class Main {
   private static class Editor {
     private static class Point {
