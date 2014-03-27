@@ -3,8 +3,8 @@ package uva10142;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.ArrayList;
-import java.util.Collection;
+import java.util.LinkedList;
+import java.util.List;
 
 /**
  * @see <a href="http://uva.onlinejudge.org/external/101/10142.html">Australian Voting</a>
@@ -13,54 +13,99 @@ public class Main {
   public static void main(String[] args) throws IOException {
     BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 
-    int numberOfCases = Integer.parseInt(reader.readLine());
+    int numberOfCases = Integer.parseInt(reader.readLine().trim());
     reader.readLine();
 
     for (int i = 0; i < numberOfCases; i++) {
-      Elections e = Elections.read(reader);
-      System.out.println(e.getWinner());
+      if (i > 0) {
+        System.out.println();
+      }
+      for (String winner : read(reader)) {
+        System.out.println(winner);
+      }
     }
   }
 
-  private static class Elections {
-    public String getWinner() {
-      return null;
+  public static String[] read(BufferedReader reader) throws IOException {
+    int totalCandidates = Integer.parseInt(reader.readLine().trim());
+    String[] candidates = new String[totalCandidates + 1];
+    for (int i = 0; i < totalCandidates; i++) {
+      candidates[i + 1] = reader.readLine().trim();
     }
 
-    public static Elections read(BufferedReader reader) {
-      try {
-        return new Builder(reader).read();
-      } catch (IOException e) {
-        throw new RuntimeException(e);
+    List<Integer[]> ballots = new LinkedList<>();
+
+    String ballot;
+    while (!isNullOrEmpty(ballot = reader.readLine())) {
+      String[] choices = ballot.split("\\s+");
+      Integer[] vote = new Integer[choices.length];
+      for (int i = 0; i < vote.length; i++) {
+        vote[i] = Integer.parseInt(choices[i]);
       }
+      ballots.add(vote);
     }
 
-    private static class Builder {
-      private final BufferedReader reader;
-      public Builder(BufferedReader reader) {
-        this.reader = reader;
-      }
+    return getWinner(candidates, ballots);
+  }
 
-      public Elections read() throws  IOException {
-        int numberOfCandidates = Integer.parseInt(reader.readLine());
-        String[] candidates = new String[numberOfCandidates + 1];
+  private static boolean isNullOrEmpty(String s) {
+    return s == null || s.trim().isEmpty();
+  }
 
-        for (int i = 0; i < numberOfCandidates; i++) {
-          candidates[i + 1] = reader.readLine();
+  private static String[] getWinner(String[] candidates, List<Integer[]> votes) {
+    int N = candidates.length;
+    boolean[] eliminated = new boolean[N];
+    while (true) {
+      int[] r = count(votes, eliminated);
+      int min = Integer.MAX_VALUE;
+      int max = Integer.MIN_VALUE;
+
+      for (int i = 1; i < N; i++) {
+        if (r[i] > 0) {
+          min = Math.min(min, r[i]);
         }
+        max = Math.max(max, r[i]);
+      }
 
-        Collection<ArrayList<Integer>> votes = new ArrayList<>();
-        String ballot;
-        while ((ballot = reader.readLine()) != null) {
-          String[] preferences = ballot.split("\\s+");
-          ArrayList<Integer> q = new ArrayList<>();
-          for (int i = 0; i < preferences.length; i++) {
-            q.add(Integer.parseInt(preferences[i]));
+      if (min == max) {
+        // all tired
+        List<String> winners = new LinkedList<>();
+        for (int i = 0; i < N; i++) {
+          if (r[i] == max) {
+            winners.add(candidates[i]);
           }
-
-          votes.add(q);
+        }
+        return winners.toArray(new String[winners.size()]);
+      } else if (max > votes.size() / 2) {
+        // clear winner
+        for (int i = 0; i < N; i++) {
+          if (r[i] == max) {
+            return new String[] { candidates[i] };
+          }
+        }
+      } else {
+        // no one has majority, eliminate candidates who scored min votes and recount
+        for (int i = 0; i < N; i++) {
+          if (r[i] == min) {
+            eliminated[i] = true;
+          }
         }
       }
     }
+  }
+
+  private static int[] count(List<Integer[]> votes, boolean[] e) {
+    int[] r = new int[votes.get(0).length + 1];
+
+    for(Integer[] v : votes) {
+      for (Integer c : v) {
+        if (!e[c]) {
+          r[c]++;
+          break;
+        }
+      }
+    }
+
+    return r;
   }
 }
