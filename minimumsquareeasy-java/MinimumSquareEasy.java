@@ -18,7 +18,7 @@ public class MinimumSquareEasy {
           left = Math.min(left, x[n]);
           top = Math.max(top, y[n]);
           right = Math.max(right, x[n]);
-          bottom = Math.min(top, y[n]);
+          bottom = Math.min(bottom, y[n]);
         }
 
         int side = Math.max(right - left, top - bottom) + 2;
