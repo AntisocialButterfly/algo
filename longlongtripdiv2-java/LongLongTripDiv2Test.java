@@ -95,15 +95,4 @@ public class LongLongTripDiv2Test {
         Assert.assertEquals(expected, actual);
     }
 
-    @Test
-    public void testCase7() {
-        long D = 1000000000000000000L;
-        int T = 1000000;
-        int B = 100;
-
-        String expected = "Possible";
-        String actual = solution.isAble(D, T, B);
-
-        Assert.assertEquals(expected, actual);
-    }
 }
